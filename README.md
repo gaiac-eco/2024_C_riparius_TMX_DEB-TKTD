@@ -7,7 +7,7 @@ DEBtool calibration files for:
 
 as presented by Koch et al. 2024
 
-<insert full publication data upon publication>
+##insert full publication data upon publication##
 
 DEBtool uses a solving algorithm that iteratively adjusts parameter values to minimize the difference between the experimental data and the model predictions. The applied solving algorithm in this study was the Nelder-Mead simplex method, which is DEBtool’s default solving algorithm. The difference between the data and the model predictions was computed using a loss function, evaluating all data simultaneously. The loss function selected for this study was the multiplicative symmetric bounded loss function, which is DEBtool’s default loss function.
 To execute the code, a licensed version of MATLAB and the free DEBtool package are required.
