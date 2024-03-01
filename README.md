@@ -26,4 +26,4 @@ More information about the use of DEBtool can be found via:
 https://debtool.debtheory.org/docs/index.html
 
 IMPORTANT:
-Please note that these files were never
+Please note that these files were never intended to be uploaded onto the Add-my-Pet portal (an online data repository for DEB models and their parametrization files) since the physiological model was specifically tailored to match the data observed in our own study as closely as possible (using higher weight factors for those data compared to data from other studies).
