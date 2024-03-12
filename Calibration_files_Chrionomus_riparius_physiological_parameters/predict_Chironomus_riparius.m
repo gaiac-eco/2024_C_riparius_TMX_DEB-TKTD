@@ -246,7 +246,7 @@ pJ = k_J * E_H;  % J/d, maturity maintenance flux
 pR = (1 - kap) .* pC - pJ; % J/d, maturation/reproduction
 pD = pS + pJ + (1 - kap_R) * pR; % J/d, dissipation flux
 JM = -(n_M\ n_O) * eta_O * [pA, pD, pG]'; % mol/d, mineral fluxes (J_C, J_H, J_O, J_N in rows)
-EJT_O20 = -1e3 *  JM(3,:)' * TC_20/ 24/ 32e-6 ./Wd; % µg O2/h.mg, O2 consumption
+EJT_O20 = -1e3 *  JM(3,:)' * TC_20/ 24/ 32e-6 ./Wd; % Âµg O2/h.mg, O2 consumption
 
 par_LEHRCS = [TC_10, f5, par_LEHR, par_CS]; % combine TC, f, and parameters
 [t, LEHRCS] = ode45(@get_LEHRCS, [0 150], LEHRCS_0, options, par_LEHRCS); % ODE simulation w.o. events
@@ -268,7 +268,7 @@ pJ = k_J * E_H;  % J/d, maturity maintenance flux
 pR = (1 - kap) .* pC - pJ; % J/d, maturation/reproduction
 pD = pS + pJ + (1 - kap_R) * pR; % J/d, dissipation flux
 JM = -(n_M\ n_O) * eta_O * [pA, pD, pG]'; % mol/d, mineral fluxes (J_C, J_H, J_O, J_N in rows)
-EJT_O10 = -1e3 *  JM(3,:)' * TC_10/ 24/ 32e-6 ./Wd; % µg O2/h.mg, O2 consumption
+EJT_O10 = -1e3 *  JM(3,:)' * TC_10/ 24/ 32e-6 ./Wd; % Âµg O2/h.mg, O2 consumption
 
 % pack to output
 prdData.tL   = EL;
@@ -445,8 +445,8 @@ E_Rj  = par_LEHRCS(12); % J/cm^3, Reproduction buffer density at pupation
 E_He  = par_LEHRCS(13); % J, Maturity at emergence
 % kap_V  = par_LEHRCS(14); % -, Conversion efficiency from larval reserve to larval structure, back to imago reserve
 s_shrink = par_LEHRCS(15); % -, Shrinking stress coefficient
-kap_G = par_LEHRCS(16); %-, growth efficiency
-h_b_shrink = par_LEHRCS(17); %-, 'background hazard rate coefficient for starv data';
+kap_G = par_LEHRCS(16); % -, Growth efficiency
+h_b_shrink = par_LEHRCS(17); % -, Background hazard rate coefficient for starvation experiment;
 
 % initialize state variables
 L       = LEHRCS(1); % cm, Structural length
