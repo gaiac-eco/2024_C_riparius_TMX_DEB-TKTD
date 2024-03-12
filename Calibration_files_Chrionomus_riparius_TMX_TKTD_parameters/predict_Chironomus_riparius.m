@@ -53,339 +53,339 @@ E_Rj_L = E_Rj * L_j^2; % J/cm, repro buffer by length at pupation
 options = odeset;
 par_LEHR = [p_Am, v, kap, kap_R, p_M, k_J, E_G, E_Hb, E_Hp, E_Rj_L, E_He, kap_V]; % pack parameters
 E_b = p_Am/ v * L_b^3; % reserve at birth set at maximum reserve density (parent generation fed ad libitum)
-LEHRCS_0 = [L_b; E_b; E_Hb; 0; 1; L_b; L_b; 0; 0; L_b]; % pack initial conditions
-par_CS = [k_d, h_b, b_b, z_s, z_b, c_T, s_shrink, kap_G]; % pack tox parameters
+LEHRDS_0 = [L_b; E_b; E_Hb; 0; 1; L_b; L_b; 0; 0; L_b]; % pack initial conditions
+par_DS = [k_d, h_b, b_b, z_s, z_b, c_T, s_shrink, kap_G]; % pack tox parameters
 
 %% emergence 12 degC
 TC = tempcorr(temp.ae12, T_ref, pars_T); TC_kd = tempcorr(temp.ae12, T_ref, T_Akd);
 
 k1 = -log(0.5)/(77.323 * exp(-0.072 * K2C(temp.ae12))); % # 1/d, k1
-par_LEHRCS = [TC, 1, par_LEHR, par_CS, TC_kd]; % combine TC, f = 1, and parameters
+par_LEHRDS = [TC, 1, par_LEHR, par_DS, TC_kd]; % combine TC, f = 1, and parameters
 
 glo.c_dyn = [1.25 0 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS, te, LEHRCSe] = odehax(LEHRCS_0, par_LEHRCS, 60); % ODE simulation with life events
+[t, LEHRDS, te, LEHRDSe] = odehax(LEHRDS_0, par_LEHRDS, 60); % ODE simulation with life events
 prdData.ae12 = te(2);
-prdData.Ni12 = LEHRCS(end,9);
+prdData.Ni12 = LEHRDS(end,9);
 
 glo.c_dyn = [1.25 19.59 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS, te, LEHRCSe] = odehax(LEHRCS_0, par_LEHRCS, 60); % ODE simulation with life events
-prdData.Ni12_c5 = LEHRCS(end,9);
+[t, LEHRDS, te, LEHRDSe] = odehax(LEHRDS_0, par_LEHRDS, 60); % ODE simulation with life events
+prdData.Ni12_c5 = LEHRDS(end,9);
 
 %% emergence 15 degC
 TC = tempcorr(temp.ae15, T_ref, pars_T); TC_kd = tempcorr(temp.ae15, T_ref, T_Akd);
 
 k1 = -log(0.5)/(77.323 * exp(-0.072 * K2C(temp.ae15))); % # 1/d, k1
-par_LEHRCS = [TC, 1, par_LEHR, par_CS, TC_kd]; % combine TC, f = 1, and parameters
+par_LEHRDS = [TC, 1, par_LEHR, par_DS, TC_kd]; % combine TC, f = 1, and parameters
 
 glo.c_dyn = [1.25 0 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS, te, LEHRCSe] = odehax(LEHRCS_0, par_LEHRCS, 90); % ODE simulation with life events
+[t, LEHRDS, te, LEHRDSe] = odehax(LEHRDS_0, par_LEHRDS, 90); % ODE simulation with life events
 prdData.ae15 = te(2);
-prdData.Ni15 = LEHRCS(end,9);
+prdData.Ni15 = LEHRDS(end,9);
 
 glo.c_dyn = [1.25 10.65 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS, te, LEHRCSe] = odehax(LEHRCS_0, par_LEHRCS, 90); % ODE simulation with life events
+[t, LEHRDS, te, LEHRDSe] = odehax(LEHRDS_0, par_LEHRDS, 90); % ODE simulation with life events
 prdData.ae15_c5 = te(2);
-prdData.Ni15_c5 = LEHRCS(end,9);
+prdData.Ni15_c5 = LEHRDS(end,9);
 
 %% emergence 20 degC
 TC = tempcorr(temp.ae20, T_ref, pars_T); TC_kd = tempcorr(temp.ae20, T_ref, T_Akd);
 
 k1 = -log(0.5)/(77.323 * exp(-0.072 * K2C(temp.ae20))); % # 1/d, k1
-par_LEHRCS = [TC, 1, par_LEHR, par_CS, TC_kd]; % combine TC, f = 1, and parameters
+par_LEHRDS = [TC, 1, par_LEHR, par_DS, TC_kd]; % combine TC, f = 1, and parameters
 
 glo.c_dyn = [1.25 0 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS, te, LEHRCSe] = odehax(LEHRCS_0, par_LEHRCS, 60); % ODE simulation with life events
+[t, LEHRDS, te, LEHRDSe] = odehax(LEHRDS_0, par_LEHRDS, 60); % ODE simulation with life events
 prdData.ae20 = te(2);
-prdData.Ni20 = LEHRCS(end,9);
+prdData.Ni20 = LEHRDS(end,9);
 
 glo.c_dyn = [1.25 12.37 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS, te, LEHRCSe] = odehax(LEHRCS_0, par_LEHRCS, 60); % ODE simulation with life events
+[t, LEHRDS, te, LEHRDSe] = odehax(LEHRDS_0, par_LEHRDS, 60); % ODE simulation with life events
 prdData.ae20_c4 = te(2);
-prdData.Ni20_c4 = LEHRCS(end,9);
+prdData.Ni20_c4 = LEHRDS(end,9);
 
 glo.c_dyn = [1.25 4.35 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS, te, LEHRCSe] = odehax(LEHRCS_0, par_LEHRCS, 60); % ODE simulation with life events
+[t, LEHRDS, te, LEHRDSe] = odehax(LEHRDS_0, par_LEHRDS, 60); % ODE simulation with life events
 prdData.ae20_c5 = te(2);
-prdData.Ni20_c5 = LEHRCS(end,9);
+prdData.Ni20_c5 = LEHRDS(end,9);
 
 %% emergence 23 degC
 TC = tempcorr(temp.ae23, T_ref, pars_T); TC_kd = tempcorr(temp.ae23, T_ref, T_Akd);
 
 k1 = -log(0.5)/(77.323 * exp(-0.072 * K2C(temp.ae23))); % # 1/d, k1
-par_LEHRCS = [TC, 1, par_LEHR, par_CS, TC_kd]; % combine TC, f = 1, and parameters
+par_LEHRDS = [TC, 1, par_LEHR, par_DS, TC_kd]; % combine TC, f = 1, and parameters
 
 glo.c_dyn = [1.25 0 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS, te, LEHRCSe] = odehax(LEHRCS_0, par_LEHRCS, 60); % ODE simulation with life events
+[t, LEHRDS, te, LEHRDSe] = odehax(LEHRDS_0, par_LEHRDS, 60); % ODE simulation with life events
 prdData.ae23 = te(2);
-prdData.Ni23 = LEHRCS(end,9);
+prdData.Ni23 = LEHRDS(end,9);
 
 glo.c_dyn = [1.25 6.49 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS, te, LEHRCSe] = odehax(LEHRCS_0, par_LEHRCS, 60); % ODE simulation with life events
+[t, LEHRDS, te, LEHRDSe] = odehax(LEHRDS_0, par_LEHRDS, 60); % ODE simulation with life events
 prdData.ae23_c5 = te(2);
-prdData.Ni23_c5 = LEHRCS(end,9);
+prdData.Ni23_c5 = LEHRDS(end,9);
 
 %% time - survival and dry weight; chronic tests at 12 degC
 TC = tempcorr(temp.tSc_12, T_ref, pars_T); TC_kd = tempcorr(temp.tSc_12, T_ref, T_Akd);
 
-par_LEHRCS = [TC, 1, par_LEHR, par_CS, TC_kd]; % combine TC, f = 1, and parameters
+par_LEHRDS = [TC, 1, par_LEHR, par_DS, TC_kd]; % combine TC, f = 1, and parameters
 k1 = -log(0.5)/(77.323 * exp(-0.072 * K2C(temp.tSc_12))); % # 1/d, k1
 
 glo.c_dyn = [1.25 0 k1]; % [t0(d) c(mug/L) k1(1/d)]
-% [t, LEHRCS, te, LEHRCSe] = odehax(LEHRCS_0, par_LEHRCS, 60); % ODE simulation with life events
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc12 = (interp1(t(:), LEHRCS(:,5), tSc_12(:,1)+0.25)); % -, Survival
+% [t, LEHRDS, te, LEHRDSe] = odehax(LEHRDS_0, par_LEHRDS, 60); % ODE simulation with life events
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc12 = (interp1(t(:), LEHRDS(:,5), tSc_12(:,1)+0.25)); % -, survival
 prdData.tSc_12 = Sc12;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_12(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_12(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_12(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_12(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_12(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_12(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc12 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_12 = Wc12;
 
 glo.c_dyn = [1.25 50.63 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc12c1 = (interp1(t(:), LEHRCS(:,5), tSc_12_c1(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc12c1 = (interp1(t(:), LEHRDS(:,5), tSc_12_c1(:,1)+0.25)); % -, survival
 prdData.tSc_12_c1 = Sc12c1;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_12_c1(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_12_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_12_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_12_c1(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_12_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_12_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc12c1 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_12_c1 = Wc12c1;
 
 glo.c_dyn = [1.25 43.89 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc12c2 = (interp1(t(:), LEHRCS(:,5), tSc_12_c2(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc12c2 = (interp1(t(:), LEHRDS(:,5), tSc_12_c2(:,1)+0.25)); % -, survival
 prdData.tSc_12_c2 = Sc12c2;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_12_c2(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_12_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_12_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_12_c2(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_12_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_12_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc12c2 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_12_c2 = Wc12c2;
 
 glo.c_dyn = [1.25 36.44 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc12c3 = (interp1(t(:), LEHRCS(:,5), tSc_12_c3(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc12c3 = (interp1(t(:), LEHRDS(:,5), tSc_12_c3(:,1)+0.25)); % -, survival
 prdData.tSc_12_c3 = Sc12c3;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_12_c3(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_12_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_12_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_12_c3(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_12_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_12_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc12c3 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_12_c3 = Wc12c3;
 
 glo.c_dyn = [1.25 28.63 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc12c4 = (interp1(t(:), LEHRCS(:,5), tSc_12_c4(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc12c4 = (interp1(t(:), LEHRDS(:,5), tSc_12_c4(:,1)+0.25)); % -, survival
 prdData.tSc_12_c4 = Sc12c4;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_12_c4(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_12_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_12_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_12_c4(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_12_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_12_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc12c4 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_12_c4 = Wc12c4;
 
 glo.c_dyn = [1.25 19.59 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc12c5 = (interp1(t(:), LEHRCS(:,5), tSc_12_c5(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc12c5 = (interp1(t(:), LEHRDS(:,5), tSc_12_c5(:,1)+0.25)); % -, survival
 prdData.tSc_12_c5 = Sc12c5;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_12_c5(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_12_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_12_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_12_c5(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_12_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_12_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc12c5 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_12_c5 = Wc12c5;
 
 %% time - survival and dry weight; chronic tests at 15 degC
 TC = tempcorr(temp.tSc_15, T_ref, pars_T); TC_kd = tempcorr(temp.tSc_15, T_ref, T_Akd);
 
-par_LEHRCS = [TC, 1, par_LEHR, par_CS, TC_kd]; % combine TC, f = 1, and parameters
+par_LEHRDS = [TC, 1, par_LEHR, par_DS, TC_kd]; % combine TC, f = 1, and parameters
 k1 = -log(0.5)/(77.323 * exp(-0.072 * K2C(temp.tSc_15))); % # 1/d, k1
 
 glo.c_dyn = [1.25 0 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc15 = (interp1(t(:), LEHRCS(:,5), tSc_15(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc15 = (interp1(t(:), LEHRDS(:,5), tSc_15(:,1)+0.25)); % -, survival
 prdData.tSc_15 = Sc15;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_15(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_15(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_15(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_15(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_15(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_15(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc15 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_15 = Wc15;
 
 glo.c_dyn = [1.25 38.14 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc15c1 = (interp1(t(:), LEHRCS(:,5), tSc_15_c1(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc15c1 = (interp1(t(:), LEHRDS(:,5), tSc_15_c1(:,1)+0.25)); % -, survival
 prdData.tSc_15_c1 = Sc15c1;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_15_c1(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_15_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_15_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_15_c1(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_15_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_15_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc15c1 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_15_c1 = Wc15c1;
 
 glo.c_dyn = [1.25 29.68 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc15c2 = (interp1(t(:), LEHRCS(:,5), tSc_15_c2(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc15c2 = (interp1(t(:), LEHRDS(:,5), tSc_15_c2(:,1)+0.25)); % -, survival
 prdData.tSc_15_c2 = Sc15c2;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_15_c2(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_15_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_15_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_15_c2(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_15_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_15_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc15c2 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_15_c2 = Wc15c2;
 
 glo.c_dyn = [1.25 24.69 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc15c3 = (interp1(t(:), LEHRCS(:,5), tSc_15_c3(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc15c3 = (interp1(t(:), LEHRDS(:,5), tSc_15_c3(:,1)+0.25)); % -, survival
 prdData.tSc_15_c3 = Sc15c3;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_15_c3(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_15_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_15_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_15_c3(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_15_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_15_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc15c3 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_15_c3 = Wc15c3;
 
 glo.c_dyn = [1.25 18.28 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc15c4 = (interp1(t(:), LEHRCS(:,5), tSc_15_c4(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc15c4 = (interp1(t(:), LEHRDS(:,5), tSc_15_c4(:,1)+0.25)); % -, survival
 prdData.tSc_15_c4 = Sc15c4;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_15_c4(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_15_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_15_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_15_c4(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_15_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_15_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc15c4 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_15_c4 = Wc15c4;
 
 glo.c_dyn = [1.25 10.65 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc15c5 = (interp1(t(:), LEHRCS(:,5), tSc_15_c5(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc15c5 = (interp1(t(:), LEHRDS(:,5), tSc_15_c5(:,1)+0.25)); % -, survival
 prdData.tSc_15_c5 = Sc15c5;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_15_c5(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_15_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_15_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_15_c5(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_15_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_15_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc15c5 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_15_c5 = Wc15c5;
 
 %% time - survival and dry weight; chronic tests at 20 degC
 TC = tempcorr(temp.tSc_20, T_ref, pars_T); TC_kd = tempcorr(temp.tSc_20, T_ref, T_Akd);
 
-par_LEHRCS = [TC, 1, par_LEHR, par_CS, TC_kd]; % combine TC, f = 1, and parameters
+par_LEHRDS = [TC, 1, par_LEHR, par_DS, TC_kd]; % combine TC, f = 1, and parameters
 k1 = -log(0.5)/(77.323 * exp(-0.072 * K2C(temp.tSc_20))); % # 1/d, k1
 
 glo.c_dyn = [1.25 0 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc20 = (interp1(t(:), LEHRCS(:,5), tSc_20(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc20 = (interp1(t(:), LEHRDS(:,5), tSc_20(:,1)+0.25)); % -, survival
 prdData.tSc_20 = Sc20;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_20(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_20(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_20(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_20(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_20(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_20(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc20 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_20 = Wc20;
 
 glo.c_dyn = [1.25 36.62 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc20c1 = (interp1(t(:), LEHRCS(:,5), tSc_20_c1(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc20c1 = (interp1(t(:), LEHRDS(:,5), tSc_20_c1(:,1)+0.25)); % -, survival
 prdData.tSc_20_c1 = Sc20c1;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_20_c1(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_20_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_20_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_20_c1(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_20_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_20_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc20c1 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_20_c1 = Wc20c1;
 
 glo.c_dyn = [1.25 28.10 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc20c2 = (interp1(t(:), LEHRCS(:,5), tSc_20_c2(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc20c2 = (interp1(t(:), LEHRDS(:,5), tSc_20_c2(:,1)+0.25)); % -, survival
 prdData.tSc_20_c2 = Sc20c2;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_20_c2(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_20_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_20_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_20_c2(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_20_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_20_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc20c2 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_20_c2 = Wc20c2;
 
 glo.c_dyn = [1.25 20.47 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc20c3 = (interp1(t(:), LEHRCS(:,5), tSc_20_c3(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc20c3 = (interp1(t(:), LEHRDS(:,5), tSc_20_c3(:,1)+0.25)); % -, survival
 prdData.tSc_20_c3 = Sc20c3;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_20_c3(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_20_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_20_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_20_c3(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_20_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_20_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc20c3 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_20_c3 = Wc20c3;
 
 glo.c_dyn = [1.25 12.37 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc20c4 = (interp1(t(:), LEHRCS(:,5), tSc_20_c4(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc20c4 = (interp1(t(:), LEHRDS(:,5), tSc_20_c4(:,1)+0.25)); % -, survival
 prdData.tSc_20_c4 = Sc20c4;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_20_c4(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_20_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_20_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_20_c4(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_20_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_20_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc20c4 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_20_c4 = Wc20c4;
 
 glo.c_dyn = [1.25 4.35 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc20c5 = (interp1(t(:), LEHRCS(:,5), tSc_20_c5(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc20c5 = (interp1(t(:), LEHRDS(:,5), tSc_20_c5(:,1)+0.25)); % -, survival
 prdData.tSc_20_c5 = Sc20c5;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_20_c5(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_20_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_20_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_20_c5(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_20_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_20_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc20c5 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_20_c5 = Wc20c5;
 
 %% time - survival and dry weight; chronic tests at 23 degC
 TC = tempcorr(temp.tSc_23, T_ref, pars_T); TC_kd = tempcorr(temp.tSc_23, T_ref, T_Akd);
 
-par_LEHRCS = [TC, 1, par_LEHR, par_CS, TC_kd]; % combine TC, f = 1, and parameters
+par_LEHRDS = [TC, 1, par_LEHR, par_DS, TC_kd]; % combine TC, f = 1, and parameters
 k1 = -log(0.5)/(77.323 * exp(-0.072 * K2C(temp.tSc_23))); % # 1/d, k1
 
 glo.c_dyn = [1.25 0 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc23 = (interp1(t(:), LEHRCS(:,5), tSc_23(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc23 = (interp1(t(:), LEHRDS(:,5), tSc_23(:,1)+0.25)); % -, survival
 prdData.tSc_23 = Sc23;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_23(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_23(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_23(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_23(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_23(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_23(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc23 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_23 = Wc23;
 
 glo.c_dyn = [1.25 50.28 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc23c1 = (interp1(t(:), LEHRCS(:,5), tSc_23_c1(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc23c1 = (interp1(t(:), LEHRDS(:,5), tSc_23_c1(:,1)+0.25)); % -, survival
 prdData.tSc_23_c1 = Sc23c1;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_23_c1(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_23_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_23_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_23_c1(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_23_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_23_c1(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc23c1 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_23_c1 = Wc23c1;
 
 glo.c_dyn = [1.25 39.81 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc23c2 = (interp1(t(:), LEHRCS(:,5), tSc_23_c2(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc23c2 = (interp1(t(:), LEHRDS(:,5), tSc_23_c2(:,1)+0.25)); % -, survival
 prdData.tSc_23_c2 = Sc23c2;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_23_c2(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_23_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_23_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_23_c2(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_23_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_23_c2(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc23c2 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_23_c2 = Wc23c2;
 
 glo.c_dyn = [1.25 28.99 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc23c3 = (interp1(t(:), LEHRCS(:,5), tSc_23_c3(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc23c3 = (interp1(t(:), LEHRDS(:,5), tSc_23_c3(:,1)+0.25)); % -, survival
 prdData.tSc_23_c3 = Sc23c3;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_23_c3(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_23_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_23_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_23_c3(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_23_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_23_c3(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc23c3 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_23_c3 = Wc23c3;
 
 glo.c_dyn = [1.25 17.99 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc23c4 = (interp1(t(:), LEHRCS(:,5), tSc_23_c4(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc23c4 = (interp1(t(:), LEHRDS(:,5), tSc_23_c4(:,1)+0.25)); % -, survival
 prdData.tSc_23_c4 = Sc23c4;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_23_c4(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_23_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_23_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_23_c4(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_23_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_23_c4(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc23c4 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_23_c4 = Wc23c4;
 
 glo.c_dyn = [1.25 6.49 k1]; % [t0(d) c(mug/L) k1(1/d)]
-[t, LEHRCS] = ode45(@get_LEHRCS, [0 60], LEHRCS_0, options, par_LEHRCS); % ODE simulation w/o life events
-Sc23c5 = (interp1(t(:), LEHRCS(:,5), tSc_23_c5(:,1)+0.25)); % -, Survival
+[t, LEHRDS] = ode45(@get_LEHRDS, [0 60], LEHRDS_0, options, par_LEHRDS); % ODE simulation w/o life events
+Sc23c5 = (interp1(t(:), LEHRDS(:,5), tSc_23_c5(:,1)+0.25)); % -, survival
 prdData.tSc_23_c5 = Sc23c5;
-WL3 = (interp1(t(:), LEHRCS(:,1), tWc_23_c5(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
-WE = (interp1(t(:), LEHRCS(:,2), tWc_23_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
-WR = (interp1(t(:), LEHRCS(:,4), tWc_23_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
+WL3 = (interp1(t(:), LEHRDS(:,1), tWc_23_c5(:,1)+0.25)).^3 .* d_V; % g, dry weight of structure
+WE = (interp1(t(:), LEHRDS(:,2), tWc_23_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reserve
+WR = (interp1(t(:), LEHRDS(:,4), tWc_23_c5(:,1)+0.25)).* w_E./ mu_E; % g, dry weight of reproduction buffer
 Wc23c5 = (WL3 + WE + WR) .* 1e3 ; % mg, dry weight
 prdData.tWc_23_c5 = Wc23c5;
 
@@ -397,19 +397,19 @@ end
 
 %%
 % Overarching function to merge consecutive ode45-runs of the different hax life stages
-function [t, LEHRCS, te, LEHRCSe] = odehax(LEHRCS_0, par_LEHRCS, tfinal)
+function [t, LEHRDS, te, LEHRDSe] = odehax(LEHRDS_0, par_LEHRDS, tfinal)
 tstart = 0;
 refine = 4;
 
-p_Am  = par_LEHRCS(3); % J / d.cm^2, Surface-area specific maximum assimilation rate
-v     = par_LEHRCS(4); % cm/d, Energy conductance
-kap   = par_LEHRCS(5); % -, Allocation fraction to soma
-kap_R = par_LEHRCS(6); % -, Reproduction efficiency
-p_M   = par_LEHRCS(7); % J/d.cm^3, Vol-spec somatic maint
-k_J   = par_LEHRCS(8); % 1/d, Maturity maint rate coefficient
-E_G   = par_LEHRCS(9); % J/cm^3, Spec cost for structure
-E_Hb  = par_LEHRCS(10); % J, Maturity at birth
-kap_V = par_LEHRCS(14); % -, Conversion efficiency from larval reserve to larval structure, back to imago reserve
+p_Am  = par_LEHRDS(3); % J / d.cm^2, Surface-area specific maximum assimilation rate
+v     = par_LEHRDS(4); % cm/d, Energy conductance
+kap   = par_LEHRDS(5); % -, Allocation fraction to soma
+kap_R = par_LEHRDS(6); % -, Reproduction efficiency
+p_M   = par_LEHRDS(7); % J/d.cm^3, Vol-spec somatic maint
+k_J   = par_LEHRDS(8); % 1/d, Maturity maint rate coefficient
+E_G   = par_LEHRDS(9); % J/cm^3, Spec cost for structure
+E_Hb  = par_LEHRDS(10); % J, Maturity at birth
+kap_V = par_LEHRDS(14); % -, Conversion efficiency from larval reserve to larval structure, back to imago reserve
 k_M   = p_M / E_G;         % 1/d, somatic maintenance rate coefficient
 k     = k_J / k_M;         % -, maintenance ratio
 E_m   = p_Am / v;          % J/cm^3, [E_m], reserve capacity
@@ -420,53 +420,53 @@ L_m   = v/ k_M/ g;         % cm, maximum length
 
 % simulate until pupa stage
 options = odeset('Events', @pupationEvent, 'Refine', refine);
-[t, LEHRCS, te, LEHRCSe] = ode45(@get_LEHRCS, [tstart tfinal], LEHRCS_0, options, par_LEHRCS); % ODE simulation
+[t, LEHRDS, te, LEHRDSe] = ode45(@get_LEHRDS, [tstart tfinal], LEHRDS_0, options, par_LEHRDS); % ODE simulation
 % simulate pupa until emergence
 if (t(end) < tfinal)
-    LEHRCSet = LEHRCSe; % initial states for pupa stage
-%     e_b  = LEHRCSet(2) * v / (LEHRCSet(1)^3 * p_Am); % -, scaled reserve density at birth of new eggs
+    LEHRDSet = LEHRDSe; % initial states for pupa stage
+%     e_b  = LEHRDSet(2) * v / (LEHRDSet(1)^3 * p_Am); % -, scaled reserve density at birth of new eggs
     e_b = 1; % Assuming no maternal effects related to pMoA
     u_E0 = get_ue0([g, k, v_Hb], e_b); % -, scaled initial reserve of new eggs
     E_0  = u_E0 * g * E_m * L_m^3;   % J, initial energy content of new eggs
-    LEHRCSet(2) = LEHRCSe(2) + LEHRCSe(1)^3 * E_G * kap_V; % Reserve expanded by transformed structure
-    LEHRCSet(1) = 0.000001; LEHRCSet(6) = LEHRCSet(1); LEHRCSet(7) = LEHRCSet(1); LEHRCSet(10) = LEHRCSet(1); % Structure to zero
-    LEHRCSet(3) = 0; % Maturity to zero
+    LEHRDSet(2) = LEHRDSe(2) + LEHRDSe(1)^3 * E_G * kap_V; % Reserve expanded by transformed structure
+    LEHRDSet(1) = 0.000001; LEHRDSet(6) = LEHRDSet(1); LEHRDSet(7) = LEHRDSet(1); LEHRDSet(10) = LEHRDSet(1); % Structure to zero
+    LEHRDSet(3) = 0; % Maturity to zero
     % A good guess of a valid first timestep is the length of the last valid
     % timestep, so use it for faster computation. 'refine' is 4 by default.
     nt = length(t);
     options = odeset('Events', @emergenceEvent, 'Refine', refine, 'InitialStep', t(nt)-t(nt-refine), 'MaxStep',t(nt)-t(1));
-    [t2, LEHRCS2, te2, LEHRCSe2] = ode45(@get_LEHRCS, [te tfinal], LEHRCSet, options, par_LEHRCS); % ODE simulation
+    [t2, LEHRDS2, te2, LEHRDSe2] = ode45(@get_LEHRDS, [te tfinal], LEHRDSet, options, par_LEHRDS); % ODE simulation
     % Accumulate output
     nt = length(t2);
     t = [t; t2(2:nt)];
-    LEHRCS = [LEHRCS; LEHRCS2(2:nt,:)];
+    LEHRDS = [LEHRDS; LEHRDS2(2:nt,:)];
     te = [te; te2]; % time at event
-    LEHRCSe = [LEHRCSe; LEHRCSe2]; % states at event
+    LEHRDSe = [LEHRDSe; LEHRDSe2]; % states at event
 end
 % simulate imago after emergence
 if (t(end) < tfinal)
-    LEHRCSe2t = LEHRCSe2; % initial states for pupa stage
-    LEHRCSe2t(9) = LEHRCSe2(4) * kap_R / E_0; % Make eggs from repro buffer
-    LEHRCSe2t(4) = 0; % Repro buffer to zero
+    LEHRDSe2t = LEHRDSe2; % initial states for pupa stage
+    LEHRDSe2t(9) = LEHRDSe2(4) * kap_R / E_0; % Make eggs from repro buffer
+    LEHRDSe2t(4) = 0; % Repro buffer to zero
     % A good guess of a valid first timestep is the length of the last valid
     % timestep, so use it for faster computation. 'refine' is 4 by default.
     nt = length(t2);
     options = odeset('Refine', refine, 'InitialStep', t2(nt)-t2(nt-refine),'MaxStep',t2(nt)-t2(1));
-    [t3, LEHRCS3] = ode45(@get_LEHRCS, [te2 tfinal], LEHRCSe2t, options, par_LEHRCS); % ODE simulation
+    [t3, LEHRDS3] = ode45(@get_LEHRDS, [te2 tfinal], LEHRDSe2t, options, par_LEHRDS); % ODE simulation
     % Accumulate output
     nt = length(t3);
     t = [t; t3(2:nt)];
-    LEHRCS = [LEHRCS; LEHRCS3(2:nt,:)];
+    LEHRDS = [LEHRDS; LEHRDS3(2:nt,:)];
 end
 end
 
 %%
 % Event function to determine the moment of pupation
-function [value, isterminal, direction] = pupationEvent(t, LEHRCS, par_LEHRCS)
-L       = LEHRCS(1); % cm, Structural length
-E_R     = LEHRCS(4); % # J, Cumulative energy in reproduction buffer
-E_Rj_L = par_LEHRCS(12); % J/cm, Energy in repro buffer by length at pupation
-% E_Rj    = par_LEHRCS(12); % J/cm^3, Reproduction buffer density at pupation
+function [value, isterminal, direction] = pupationEvent(t, LEHRDS, par_LEHRDS)
+L       = LEHRDS(1); % cm, Structural length
+E_R     = LEHRDS(4); % # J, Cumulative energy in reproduction buffer
+E_Rj_L = par_LEHRDS(12); % J/cm, Energy in repro buffer by length at pupation
+% E_Rj    = par_LEHRDS(12); % J/cm^3, Reproduction buffer density at pupation
 
 value = E_R - (E_Rj_L * L); % The value that we want to be zero
 % value = E_R - (E_Rj * L^3); % The value that we want to be zero
@@ -476,10 +476,10 @@ end
 
 %%
 % Event function to determine the moment of emergence
-function [value, isterminal, direction] = emergenceEvent(t, LEHRCS, par_LEHRCS)
-E_H     = LEHRCS(3); % J, Energy invested in maturity
-E_R     = LEHRCS(4); % J, Cumulative energy in reproduction buffer
-E_He    = par_LEHRCS(13); % J, Maturity at emergence
+function [value, isterminal, direction] = emergenceEvent(t, LEHRDS, par_LEHRDS)
+E_H     = LEHRDS(3); % J, Energy invested in maturity
+E_R     = LEHRDS(4); % J, Cumulative energy in reproduction buffer
+E_He    = par_LEHRDS(13); % J, Maturity at emergence
 
 value = (E_H - E_He) + (E_R == 0) ; % The value that we want to be zero
 isterminal = 1;  % Halt integration
@@ -490,45 +490,45 @@ end
 % ODE system of the hax model; different life-stages are covered by if-clauses
 % The system is designed to work with the event functions for pupa and emergence
 % If executed without these, it should behave like an abj model w/o egg laying
-function [dLEHRCS] = get_LEHRCS(t, LEHRCS, par_LEHRCS)
+function [dLEHRDS] = get_LEHRDS(t, LEHRDS, par_LEHRDS)
 
 % Read parameters
 global glo
-TC    = par_LEHRCS(1); % -, Temperature correction
-f     = par_LEHRCS(2); % -, Functional response
-p_Am  = par_LEHRCS(3); % J / d.cm^2, Surface-area specific maximum assimilation rate
-v     = par_LEHRCS(4); % cm/d, Energy conductance
-kap   = par_LEHRCS(5); % -, Allocation fraction to soma
-% kap_R = par_LEHRCS(6); % -, Reproduction efficiency
-p_M   = par_LEHRCS(7); % J/d.cm^3, Vol-spec somatic maint
-k_J   = par_LEHRCS(8); % 1/d, Maturity maint rate coefficient
-E_G   = par_LEHRCS(9); % J/cm^3, Spec cost for structure
-E_Hb  = par_LEHRCS(10); % J, Maturity at birth
-E_Hp  = par_LEHRCS(11); % J, Maturity at puberty
-E_Rj_L = par_LEHRCS(12); % J/cm, Energy in repro buffer by length at pupation
-E_He  = par_LEHRCS(13); % J, Maturity at emergence
-% kap_V  = par_LEHRCS(14); % -, Conversion efficiency from larval reserve to larval structure, back to imago reserve
-k_d   = par_LEHRCS(15); % 1/d, Dominant rate constant
-h_b   = par_LEHRCS(16); % mg/L, Background mortality rate (SD)
-b_b   = par_LEHRCS(17); % L/(mg d), Killing rate (SD)
-z_s   = par_LEHRCS(18); % mg/L, Population-wide tolerance threshold (SD)
-z_b   = par_LEHRCS(19); % mg/L, mug/L, Population-wide tolerance threshold (sublethal)
-c_T   = par_LEHRCS(20); % mg/L, Tolerance concentration (sublethal)
-s_shrink = par_LEHRCS(21); % -, Shrinking stress coefficient
-kap_G = par_LEHRCS(22); % -, Growth efficiency
-TC_kd = par_LEHRCS(23); % -, Temperature correction for dominant rate constant
+TC    = par_LEHRDS(1); % -, Temperature correction
+f     = par_LEHRDS(2); % -, Functional response
+p_Am  = par_LEHRDS(3); % J / d.cm^2, Surface-area specific maximum assimilation rate
+v     = par_LEHRDS(4); % cm/d, Energy conductance
+kap   = par_LEHRDS(5); % -, Allocation fraction to soma
+% kap_R = par_LEHRDS(6); % -, Reproduction efficiency
+p_M   = par_LEHRDS(7); % J/d.cm^3, Vol-spec somatic maint
+k_J   = par_LEHRDS(8); % 1/d, Maturity maint rate coefficient
+E_G   = par_LEHRDS(9); % J/cm^3, Spec cost for structure
+E_Hb  = par_LEHRDS(10); % J, Maturity at birth
+E_Hp  = par_LEHRDS(11); % J, Maturity at puberty
+E_Rj_L = par_LEHRDS(12); % J/cm, Energy in repro buffer by length at pupation
+E_He  = par_LEHRDS(13); % J, Maturity at emergence
+% kap_V  = par_LEHRDS(14); % -, Conversion efficiency from larval reserve to larval structure, back to imago reserve
+k_d   = par_LEHRDS(15); % 1/d, Dominant rate constant
+h_b   = par_LEHRDS(16); % mg/L, Background mortality rate (SD)
+b_b   = par_LEHRDS(17); % L/(mg d), Killing rate (SD)
+z_s   = par_LEHRDS(18); % mg/L, Population-wide tolerance threshold (SD)
+z_b   = par_LEHRDS(19); % mg/L, mug/L, Population-wide tolerance threshold (sublethal)
+c_T   = par_LEHRDS(20); % mg/L, Tolerance concentration (sublethal)
+s_shrink = par_LEHRDS(21); % -, Shrinking stress coefficient
+kap_G = par_LEHRDS(22); % -, Growth efficiency
+TC_kd = par_LEHRDS(23); % -, Temperature correction for dominant rate constant
 
 % initialize state variables
-L       = LEHRCS(1); % cm, Structural length
-E       = LEHRCS(2); % J, Energy in reserve
-E_H     = LEHRCS(3); % # J, Energy invested in maturity
-E_R     = LEHRCS(4); % # J, Cumulative energy in reproduction buffer
-S       = LEHRCS(5); % -, Surviving fraction
-Lsa     = LEHRCS(6); % cm, Min(Current Length, Length at start of acceleration)
-Lea     = LEHRCS(7); % cm, Min(Current Length, Length at end of acceleration)
-c_i     = LEHRCS(8); % mg/L, Internal concentration
-eggs    = LEHRCS(9); % #, Produced eggs
-maxL    = LEHRCS(10); % cm, Maximum length reached so far
+L       = LEHRDS(1); % cm, Structural length
+E       = LEHRDS(2); % J, Energy in reserve
+E_H     = LEHRDS(3); % # J, Energy invested in maturity
+E_R     = LEHRDS(4); % # J, Cumulative energy in reproduction buffer
+S       = LEHRDS(5); % -, Surviving fraction
+Lsa     = LEHRDS(6); % cm, Min(Current Length, Length at start of acceleration)
+Lea     = LEHRDS(7); % cm, Min(Current Length, Length at end of acceleration)
+Dmg     = LEHRDS(8); % mg/L, Damage state
+eggs    = LEHRDS(9); % #, Produced eggs
+maxL    = LEHRDS(10); % cm, Maximum length reached so far
 
 % Metabolic acceleration (Type M)
 M = Lea / Lsa; % Acceleration factor
@@ -541,7 +541,7 @@ e = E * v / (L^3 * p_Am);
 l = L * p_M / (kap * p_Am);
 
 % Toxicodynamics (DEB-TKTD)
-s = (1 / c_T) * max(0, c_i - z_b); % Stress factor DEB-TKTD
+s = (1 / c_T) * max(0, Dmg - z_b); % Stress factor DEB-TKTD
 
 % Mode of action: effect on feeding
 f = f * max(0, 1 - s);
@@ -587,7 +587,7 @@ end
 
 % Toxicodynamics (GUTS-RED-SD)
 L_m = kap * p_Am / p_M; % cm, maximum structural length
-h = b_b * max(0, c_i - z_s / (L/L_m)); % calculate the hazard rate
+h = b_b * max(0, Dmg - z_s / (L/L_m)); % calculate the hazard rate
 
 % Changes in state variables
 dL = (L * r / 3) * TC; % DEB Book 3rd ed. Chap. 2.6.1
@@ -621,7 +621,7 @@ if (t < glo.c_dyn(1)) % time between birth and start of exposure
 else % after first exposure
     c_w = c_w0 * exp(-k1 * (t - glo.c_dyn(1)));
 end
-dc_i = k_d * (c_w - c_i) * TC_kd;
+dDmg = k_d * (c_w - Dmg) * TC_kd;
 
 deggs = 0 * TC;
 
@@ -633,6 +633,6 @@ h_sh = s_shrink * k_M * max(0, maxL - L)/maxL; % hazard due to shrinking
 dS = -(h + h_b + h_sh) * S ; % with tox
 % dS = -(h_b + h_sh) * S ; % without tox
 
-dLEHRCS = [dL; dE; dE_H; dE_R; dS; dLsa; dLea; dc_i; deggs; dmaxL]; % collect derivatives
+dLEHRDS = [dL; dE; dE_H; dE_R; dS; dLsa; dLea; dDmg; deggs; dmaxL]; % collect derivatives
 end
 
