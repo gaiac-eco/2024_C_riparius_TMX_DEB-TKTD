@@ -514,9 +514,9 @@ b_b   = par_LEHRCS(17); % L/(mg d), Killing rate (SD)
 z_s   = par_LEHRCS(18); % mg/L, Population-wide tolerance threshold (SD)
 z_b   = par_LEHRCS(19); % mg/L, mug/L, Population-wide tolerance threshold (sublethal)
 c_T   = par_LEHRCS(20); % mg/L, Tolerance concentration (sublethal)
-s_shrink = par_LEHRCS(21); % L/(mg d), Killing rate (SD)
-kap_G = par_LEHRCS(22); % mg/L, Population-wide tolerance threshold (SD)
-TC_kd = par_LEHRCS(23); % -, Temperature correction
+s_shrink = par_LEHRCS(21); % -, Shrinking stress coefficient
+kap_G = par_LEHRCS(22); % -, Growth efficiency
+TC_kd = par_LEHRCS(23); % -, Temperature correction for dominant rate constant
 
 % initialize state variables
 L       = LEHRCS(1); % cm, Structural length
