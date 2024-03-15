@@ -414,7 +414,7 @@ k_M   = p_M / E_G;         % 1/d, somatic maintenance rate coefficient
 k     = k_J / k_M;         % -, maintenance ratio
 E_m   = p_Am / v;          % J/cm^3, [E_m], reserve capacity
 g     = E_G / kap / E_m ;  % -, energy investment ratio
-U_Hb  = E_Hb / p_Am;       % d.cm^2, Scaled maturity at birth male (d.cm^2)
+U_Hb  = E_Hb / p_Am;       % d.cm^2, Scaled maturity at birth (d.cm^2)
 V_Hb  = U_Hb / (1 - kap); v_Hb = V_Hb * g^2 * k_M^3 / v^2;
 L_m   = v/ k_M/ g;         % cm, maximum length
 
