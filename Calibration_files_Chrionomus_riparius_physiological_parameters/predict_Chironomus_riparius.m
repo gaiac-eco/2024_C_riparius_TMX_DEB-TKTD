@@ -446,7 +446,7 @@ E_He  = par_LEHRS(13); % J, Maturity at emergence
 % kap_V  = par_LEHRS(14); % -, Conversion efficiency from larval reserve to larval structure, back to imago reserve
 s_shrink = par_LEHRS(15); % -, Shrinking stress coefficient
 kap_G = par_LEHRS(16); % -, Growth efficiency
-h_b_shrink = par_LEHRS(17); % -, Background hazard rate coefficient for starvation experiment;
+h_b_shrink = par_LEHRS(17); % -, Background hazard rate coefficient for starvation experiment
 
 % initialize state variables
 L       = LEHRS(1); % cm, Structural length
